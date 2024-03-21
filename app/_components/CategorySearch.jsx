@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
@@ -9,6 +9,8 @@ import Globalapi from '../_utils/Globalapi'
 
 const CategorySearch = () => {
 
+    const [categoryList, setCategoryList ] = useState([]);
+
     useEffect(()=>{
         getCategoryList()
     },[])
@@ -16,6 +18,9 @@ const CategorySearch = () => {
     const getCategoryList = ()=>{
         Globalapi.getCategory().then((res)=>{
             console.log(res);
+            
+            console.log(res.data.data[0].attributes?.Icon?.data[0]?.attributes?.name);
+            setCategoryList(res.data.data)
         })
     }
   return (
@@ -25,6 +30,18 @@ const CategorySearch = () => {
             <Input type="text" placeholder="Search" />
             <Button type="submit"><Search className='h-4 w-4 mr-2' />Search...</Button>
         </div>
+
+        <div className='grid grid-cols-3 mt-5 md:grid-cols-4 lg:grid-cols-6 '>
+        {categoryList.map((item, index)=>index<6 && (
+            <div key={index} className="flex flex-col text-center gap-2 items-center p-5 bg-blue-50 m-2 rounded-lg cursor-pointer
+            gap-2 hover:scale-110 transition-all ease-in-out">
+                {/* <Image src={item.attributes?.Icon?.data?[0]?.attributes?.name}></Image> */}
+                <label className='text-blue-600 text-sm'>{item.attributes?.Name}</label>
+            </div>
+        ))}
+        </div>
+
+
     </div>
   )
 }
