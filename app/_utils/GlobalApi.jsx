@@ -1,0 +1,11 @@
+import axios from "axios";
+
+const instance = axios.create({
+    baseURL: 'http://localhost:1337/api',
+});
+
+const getCategory = () => instance.get('categories?populate=*')
+
+export default{
+    getCategory
+}
