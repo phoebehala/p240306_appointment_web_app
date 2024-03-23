@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 
 //icons
 import { Search } from 'lucide-react'
+
 import Globalapi from '../_utils/Globalapi'
 
 const CategorySearch = () => {

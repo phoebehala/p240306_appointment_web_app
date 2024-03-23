@@ -5,7 +5,9 @@ const instance = axios.create({
 });
 
 const getCategory = () => instance.get('categories?populate=*')
+const getDoctorList = () => instance.get('doctors?populate=*')
 
 export default{
-    getCategory
+    getCategory,
+    getDoctorList
 }
