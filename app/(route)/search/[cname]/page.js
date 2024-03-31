@@ -1,11 +1,13 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 
+function page({params}) {
+  useEffect(()=>{
+    console.log(params);
+  })
 
-
-function page({children}) {
   return (
-      <div>{ children }</div>
+      <div>Search</div>
   )
 }
 
