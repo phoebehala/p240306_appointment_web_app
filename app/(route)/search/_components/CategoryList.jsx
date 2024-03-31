@@ -16,11 +16,16 @@ import {
     CommandSeparator,
     CommandShortcut,
   } from "@/components/ui/command"
+import { useParams, usePathname } from 'next/navigation'
   
 
 function CategoryList() {
 
     const [categoryList, setCategoryList ] = useState([]);
+
+    const params = usePathname()
+    console.log(params);
+    const category=params.split('/')[2];
 
     useEffect(()=>{
         getCategoryList()
@@ -44,13 +49,13 @@ function CategoryList() {
             <CommandGroup heading="Suggestions">
                 {categoryList?.map((item, index)=>(
                      <CommandItem key={index}>
-                        <Link  href={""} 
+                        <Link  href={'/search/' } 
                                 className={`p-2 flex gap-2
                                             text-[14px]
                                             text-blue-600
                                             items-center
                                             rounded-md cursor-pointer w-full
-                                            
+                                          ${category==item.attributes.Name&&'bg-blue-100'}  
                                         `}>
                             <label>{item.attributes?.Name}</label>
                         </Link>
